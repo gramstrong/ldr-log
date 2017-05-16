@@ -5,13 +5,19 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
+  }
+
+  #appHeader {
+    background-color: #41B883;
+    height: 100px;
   }
 </style>
 
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <div id="appHeader">
+      <h1 class="ldr-title">LDR.Log</h1>
+    </div>
     <router-view></router-view>
   </div>
 </template>
