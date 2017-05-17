@@ -1,21 +1,26 @@
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<script>
+</script>
+
 <style scoped>
-  .day {
-    display: inline-block;
-  }
+
 </style>
 
 <template>
-  <table>
-    <template v-for="day in week">
-      <div class="day">{{day}}</div>
+  <div>
+    <template v-for="(mileage, day) in week">
+      <card :title="day">{{mileage}}</card>
     </template>
-  </table>
+  </div>
 </template>
 
 <script>
+import card from '@/components/card'
+
 export default {
   name: 'WeeklyView',
+  components: {
+    card
+  },
   data () {
     return {
       week: {
@@ -24,8 +29,8 @@ export default {
         wednesday: 1,
         thursday: 1,
         friday: 1,
-        monday: 1,
-        monday: 1,
+        saturday: 1,
+        sunday: 1,
       }
     }
   }
