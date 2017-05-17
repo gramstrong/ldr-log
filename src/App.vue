@@ -16,7 +16,7 @@
 <template>
   <div id="app">
     <div id="appHeader">
-      <h1 class="ldr-title">Woop Woop</h1>
+      <h1 class="ldr-title">LDR Log</h1>
     </div>
     <router-view></router-view>
   </div>

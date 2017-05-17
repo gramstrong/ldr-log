@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
-import WeeklyView from '@/views/WeeklyView'
+import Main from '@/routes/Main'
+import Weekly from '@/routes/Weekly'
 
 Vue.use(Router)
 
@@ -9,13 +9,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'Main',
+      component: Main
     },
     {
-      path: '/Week',
-      name: 'WeeklyView',
-      component: WeeklyView
+      path: '/weekly',
+      name: 'Weekly',
+      component: Weekly
     }
   ]
 })
