@@ -10,6 +10,7 @@
   #appHeader {
     background-color: #41B883;
     height: 100px;
+    margin-bottom: 40px;
   }
 </style>
 
