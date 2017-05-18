@@ -1,6 +1,7 @@
-# vue-app
+# ldr-log
 
 > A Vue.js project
+>> A sample app for logging running mileage. Built for the purpose of trying out and learning Vue.js.
 
 ## Build Setup
 
