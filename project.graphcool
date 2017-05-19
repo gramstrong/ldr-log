@@ -1,0 +1,35 @@
+# project: cj2rtdz6ty82t01604872wvsj
+# version: 48
+
+type DailyLog implements Node {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  mileage: Int
+  updatedAt: DateTime!
+  effort: Effort
+  runDate: DateTime! @isUnique
+  notes: String
+}
+
+type File implements Node {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
+
+type User implements Node {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+}
+
+enum Effort {
+  EASY
+  MEDIUM
+  HARD
+}
