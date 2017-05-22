@@ -5,6 +5,7 @@
     height: 250px;
     width: 250px;
     border: solid black 1px;
+    margin: 5px;
   }
 </style>
 
