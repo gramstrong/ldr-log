@@ -5,83 +5,60 @@
     flex-direction: row;
     justify-content: center;
   }
-
-  .hard-run {
-    background-color: #fd6f6f;
-  }
-
-  .easy-run {
-    background-color: #95caff;
-  }
-
-  .medium-run {
-    background-color: #fbfb9b;
-  }
 </style>
 
 <template>
   <div class='week-view'>
-    <template v-for="(data, day) in week">
-      <card :title="day" v-bind:class="runType(data.effort)">
-        {{data.mileage}}
-      </card>
+    <template v-for="(data, day) in formattedWeek">
+      <log-card :title="day" :content="data"></log-card>
     </template>
   </div>
 </template>
 
 <script>
-import card from '@/components/card'
+import logCard from '@/components/log-card'
+import queries from '@/queries'
 import dateFns from 'date-fns'
-import gql from 'graphql-tag'
-
-var  weekQuery = function(){
-  var today = new Date();
-  var beginWeek = dateFns.format(dateFns.startOfWeek(today), 'YYYY-MM-DD');
-  var endWeek = dateFns.format(dateFns.endOfWeek(today), 'YYYY-MM-DD');
-
-  return gql`
-    query {
-      week: allDailyLogs(filter: {
-        runDate_gte: "${beginWeek}"
-        runDate_lte: "${endWeek}"
-      }){
-        id
-        mileage
-        effort
-        runDate
-      }
-    }
-  `;
-};
 
 export default {
   name: 'Weekly',
 
   components: {
-    card
+    logCard
   },
 
-  methods: {
-    runType: function(effort) {
-      var efforts = {
-        'EASY': 'easy-run',
-        'MEDIUM': 'medium-run',
-        'HARD': 'hard-run'
-      }
-      return efforts[effort]
+  watch: {
+    week: function(newWeek) {
+      this.week = this.week || [];
+      
+      this.formattedWeek = this.week.reduce(function(formattedWeek, log){
+       
+        var day = dateFns.format(log.runDate, 'dddd');
+        formattedWeek[day] = formattedWeek[day] || [];
+        formattedWeek[day].push(log);
+       
+        return formattedWeek;
+      }, this.formattedWeek);
     }
   },
 
-  data () {
+  data() {
     return {
-      week: {}
+      formattedWeek: {
+        Monday: [],
+        Tuesday: [],
+        Wednesday: [],
+        Thursday: [],
+        Friday: [],
+        Saturday: [],
+        Sunday: []
+      }
     }
   },
 
   apollo: {
     week: {
-      query: weekQuery(),
-      loadingKey: 'loading'
+      query: queries.getWeek(),
     }
   }
 }

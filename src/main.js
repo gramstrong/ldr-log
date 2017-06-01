@@ -6,8 +6,6 @@ import VueApollo from 'vue-apollo'
 import App from './App'
 import router from './router'
 
-console.log(process.env);
-
 const networkInterface = createNetworkInterface({uri: process.env.LDR_GRAPH_COOL_SIMPLE});
 
 const apolloClient = new ApolloClient({
