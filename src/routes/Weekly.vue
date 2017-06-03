@@ -1,22 +1,28 @@
 
 <style scoped>
   .week-view {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    overflow: auto;
+  }
+
+  .week-scroll {
+    display: block;
   }
 </style>
 
 <template>
   <div class='week-view'>
-    <template v-for="(data, day) in formattedWeek">
-      <log-card :title="day" :content="data"></log-card>
-    </template>
+    <div class='week-scroll'>
+      <template v-for="(data, day) in formattedWeek">
+      </template>
+      <week-navigator :currentDay="this.currentDay"></week-navigator>
+      <log-card :title="this.currentDay" :content="this.formattedWeek[this.currentDay]"></log-card>      
+    </div>
   </div>
 </template>
 
 <script>
 import logCard from '@/components/log-card'
+import weekNavigator from '@/components/week-navigator'
 import queries from '@/queries'
 import dateFns from 'date-fns'
 
@@ -24,7 +30,8 @@ export default {
   name: 'Weekly',
 
   components: {
-    logCard
+    logCard,
+    weekNavigator
   },
 
   watch: {
@@ -52,7 +59,9 @@ export default {
         Friday: [],
         Saturday: [],
         Sunday: []
-      }
+      },
+      currentDay: 'Monday',
+      weekView: false
     }
   },
 

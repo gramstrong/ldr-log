@@ -1,12 +1,14 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .card {
+  .log-card {
     display: inline-block;
     overflow: hidden;
     height: 250px;
     width: 250px;
     border: solid black 1px;
     margin: 5px;
+    border-radius: 15px;
+    box-shadow: 3px 3px 3px #888888;
   }
 
   .title {
@@ -45,7 +47,7 @@
 </style>
 
 <template>
-  <div class="card">
+  <div class="log-card">
     <h3 class="title">{{title}}</h3>
     <div id="logs">
       <template v-for="(log, index) in content">

@@ -19,7 +19,7 @@
     <div id="appHeader">
       <h1 class="ldr-title">LDR Log</h1>
     </div>
-    <router-view></router-view>
+    <router-view></router-view> 
   </div>
 </template>
 
