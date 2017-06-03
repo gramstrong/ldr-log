@@ -4,32 +4,43 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-bottom: 35px;
     font-size: 2em;    
   }
 
   .nav {
-    margin: 0 8px 0 8px;
+    width: 12%;
+    position: relative;
   }
 
-  .nav:after{
-    content:"";
+  .nav-border {
+    border-left: solid 1px rgba(0,0,0,0.2);
+  }
+
+  .selected {
+    height: 10px;
     position: absolute;
-    bottom: 0;
+    bottom: -4px;
     left: 0;
     right: 0;
-    height: 0.5em;
-    border-top: 1px solid black;
-    z-index: -1;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .selected-border {
+    border-bottom: solid 2px rgba(0,0,0, 0.6);
+    border-radius: 3px;
   }
 </style>
 
 <template>
   <div class='week-navigator'>
-    <template v-for="day in week">
-        <div class='nav day'>{{day}}</div>
+    <template v-for="(nav, day) in week">
+        <div :class="navClasses(day)" v-on:click="setDay" :day="day">
+          {{nav}}
+          <div :class="selectedClasses(day)"></div>
+        </div>
     </template>
-    <div class='nav'>…</div>
+    <div class='nav nav-border'>…</div>
   </div>
 </template>
 
@@ -40,8 +51,39 @@ export default {
   data() {
       return {
         currentDay: 'Monday',
-        week: ['M','T', 'W', 'Th', 'F', 'S', 'Su']
+        week: {
+          'Monday': 'M',
+          'Tuesday': 'T', 
+          'Wednesday': 'W', 
+          'Thursday': 'Th', 
+          'Friday': 'F', 
+          'Saturday': 'S', 
+          'Sunday': 'Su'
+          }
       };
+  },
+
+  watch: {
+    currentDay: function(newCurrentDay){
+      console.log(newCurrentDay);
+    }
+  },
+
+  methods: {
+    navClasses: function(day){
+      var classes = 'nav ';
+      classes += day !== 'Monday' ? 'nav-border ' : '';
+
+      return classes;
+    },
+    selectedClasses: function(day){
+      var classes = 'selected ';      
+      return classes += day === this.currentDay ? 'selected-border' : ''
+    },
+    setDay: function(event){
+      var newDay = event.currentTarget.getAttribute('day');
+      this.currentDay = newDay;
+    }
   }
 
 }

@@ -7,6 +7,10 @@
   .week-scroll {
     display: block;
   }
+
+  .week-navigator {
+    margin-bottom: 35px;
+  }
 </style>
 
 <template>
@@ -14,8 +18,8 @@
     <div class='week-scroll'>
       <template v-for="(data, day) in formattedWeek">
       </template>
-      <week-navigator :currentDay="this.currentDay"></week-navigator>
-      <log-card :title="this.currentDay" :content="this.formattedWeek[this.currentDay]"></log-card>      
+      <week-navigator class="week-navigator" :currentDay="this.currentDay"></week-navigator>             
+      <log-card :title="this.currentDay" :content="this.formattedWeek[this.currentDay]"></log-card>     
     </div>
   </div>
 </template>
@@ -52,13 +56,13 @@ export default {
   data() {
     return {
       formattedWeek: {
-        Monday: [],
-        Tuesday: [],
-        Wednesday: [],
-        Thursday: [],
-        Friday: [],
-        Saturday: [],
-        Sunday: []
+        'Monday': [],
+        'Tuesday': [],
+        'Wednesday': [],
+        'Thursday': [],
+        'Friday': [],
+        'Saturday': [],
+        'Sunday': []
       },
       currentDay: 'Monday',
       weekView: false
