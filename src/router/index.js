@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Main from '@/routes/Main'
-import Weekly from '@/routes/Weekly'
+import Day from '@/routes/Day'
 
 Vue.use(Router)
 
@@ -13,9 +13,9 @@ export default new Router({
       component: Main
     },
     {
-      path: '/weekly',
-      name: 'Weekly',
-      component: Weekly
+      path: '/daily',
+      name: 'Day',
+      component: Day
     }
   ]
 })

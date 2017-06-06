@@ -1,37 +1,52 @@
 
 <style scoped>
-  .week-view {
-    overflow: auto;
-  }
-
-  .week-scroll {
-    display: block;
+  .day-view {
+    overflow: none;
+    height: 100%;
   }
 
   .week-navigator {
-    margin-bottom: 35px;
+    margin-bottom: 10%;
+  }
+
+  .log-actions {
+    margin-top: 10%
+  }
+
+  .add-log-button {
+    cursor: pointer;    
+    margin-top: 10%;
+    border-radius: 50px;
+    margin-left: 70%;
+    transition: transform 0.8s;
+  }
+
+  .rotated {
+    transform: rotate(45deg);
   }
 </style>
 
 <template>
-  <div class='week-view'>
-    <div class='week-scroll'>
+  <div class='day-view'>
       <template v-for="(data, day) in formattedWeek">
       </template>
-      <week-navigator class="week-navigator" :currentDay="this.currentDay"></week-navigator>             
+      <week-navigator class="week-navigator" :current-day="this.currentDay" :on-navigate="setCurrentDay"></week-navigator>      
       <log-card :title="this.currentDay" :content="this.formattedWeek[this.currentDay]"></log-card>     
-    </div>
+      <img v-on:click="adding = !adding" :class="{
+        'add-log-button': true,
+        'rotated': adding
+      }" src="../assets/add-log-button.svg" height="100"/>
   </div>
 </template>
 
 <script>
-import logCard from '@/components/log-card'
-import weekNavigator from '@/components/week-navigator'
-import queries from '@/queries'
-import dateFns from 'date-fns'
+import logCard from '@/components/log-card';
+import weekNavigator from '@/components/week-navigator';
+import queries from '@/queries';
+import dateFns from 'date-fns';
 
 export default {
-  name: 'Weekly',
+  name: 'Day',
 
   components: {
     logCard,
@@ -50,7 +65,13 @@ export default {
        
         return formattedWeek;
       }, this.formattedWeek);
-    }
+    },
+  },
+
+  methods: {
+    setCurrentDay: function(newCurrentDay){
+      this.currentDay = newCurrentDay;
+    },
   },
 
   data() {
@@ -65,7 +86,7 @@ export default {
         'Sunday': []
       },
       currentDay: 'Monday',
-      weekView: false
+      adding: false
     }
   },
 

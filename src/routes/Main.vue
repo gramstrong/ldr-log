@@ -24,7 +24,7 @@ a {
     <h1>{{ msg }}</h1>
     <h2>Views</h2>
     <ul>
-      <li><router-link to="/weekly">Weekly</router-link></li>
+      <li><router-link to="/daily">Daily</router-link></li>
     </ul>
   </div>
 </template>

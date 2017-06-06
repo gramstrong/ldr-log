@@ -12,6 +12,10 @@
     position: relative;
   }
 
+  .nav:hover {
+    cursor: pointer;
+  }
+
   .nav-border {
     border-left: solid 1px rgba(0,0,0,0.2);
   }
@@ -45,12 +49,14 @@
 </template>
 
 <script>
+import dateFns from 'date-fns';
+
 export default {
   name: 'week-navigator',
 
   data() {
       return {
-        currentDay: 'Monday',
+        currentDay: dateFns.format(new Date(), 'dddd'),
         week: {
           'Monday': 'M',
           'Tuesday': 'T', 
@@ -63,9 +69,15 @@ export default {
       };
   },
 
+  props: ['onNavigate'],
+
+  mounted: function(){
+    this.onNavigate(this.currentDay);
+  },
+
   watch: {
     currentDay: function(newCurrentDay){
-      console.log(newCurrentDay);
+      this.onNavigate(newCurrentDay);
     }
   },
 

@@ -44,19 +44,23 @@
     justify-content: center;
     width: 100%;
   }
+
+  #mileage {
+    font-size: 3em;
+  }
 </style>
 
 <template>
-  <div class="log-card">
-    <h3 class="title">{{title}}</h3>
-    <div id="logs">
-      <template v-for="(log, index) in content">
-        <div class="log-section" v-bind:class="runType(log.effort)">
-          <span>{{log.mileage}}</span>
-        </div>
-      </template>
+    <div class="log-card">
+      <h3 class="title">{{title}}</h3>
+      <div id="logs">
+        <template v-for="(log, index) in content">
+          <div class="log-section" v-bind:class="runType(log.effort)">
+            <span id="mileage">{{log.mileage}}</span>
+          </div>
+        </template>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
