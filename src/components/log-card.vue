@@ -5,10 +5,9 @@
     overflow: hidden;
     height: 250px;
     width: 250px;
-    border: solid black 1px;
+    border: solid black 2px;
     margin: 5px;
     border-radius: 15px;
-    box-shadow: 3px 3px 3px #888888;
   }
 
   .title {
