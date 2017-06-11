@@ -17,6 +17,7 @@ export default {
                     id
                     mileage
                     effort
+                    notes
                     runDate
                 }
             }

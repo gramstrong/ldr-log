@@ -44,8 +44,12 @@
     width: 100%;
   }
 
-  #mileage {
+  .log-card-mileage {
     font-size: 3em;
+  }
+
+  .log-card-notes {
+    margin-top: 5px;
   }
 </style>
 
@@ -55,7 +59,8 @@
       <div id="logs">
         <template v-for="(log, index) in content">
           <div class="log-section" v-bind:class="runType(log.effort)">
-            <span id="mileage">{{log.mileage}}</span>
+            <span class="log-card-mileage">{{log.mileage}}</span>
+            <span class="log-card-notes">{{log.notes}}</span>
           </div>
         </template>
       </div>

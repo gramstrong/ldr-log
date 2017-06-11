@@ -18,11 +18,11 @@
     margin-top: 10%;
     border-radius: 50px;
     margin-left: 70%;
-    transition: transform 0.8s;
+    transition: transform .7s;
   }
 
   .rotated {
-    transform: rotate(45deg);
+    transform: rotate(135deg);
   }
 </style>
 
@@ -35,7 +35,7 @@
       <img v-on:click="adding = !adding" :class="{
         'add-log-button': true,
         'rotated': adding
-      }" src="../assets/add-log-button.svg" height="100"/>
+      }" src="../assets/add-log-button.svg" height="60"/>
   </div>
 </template>
 
