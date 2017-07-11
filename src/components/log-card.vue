@@ -3,7 +3,7 @@
   .log-card {
     display: inline-block;
     overflow: hidden;
-    height: 250px;
+    height: 215px;
     width: 250px;
     border: solid black 2px;
     margin: 5px;

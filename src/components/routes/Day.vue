@@ -15,14 +15,34 @@
 
   .add-log-button {
     cursor: pointer;    
-    margin-top: 10%;
     border-radius: 50px;
-    margin-left: 70%;
     transition: transform .7s;
+    padding: 0 10%;
   }
 
   .rotated {
     transform: rotate(135deg);
+  }
+
+  .add-form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 105px;
+    background-color: none;
+    transition: border-top-color .7s, height .7s;
+    border-top: 1px solid;    
+    border-top-color: #FFF;
+    background-color: #FFF;    
+  }
+
+  .add-form-adding {
+    border-top-color: #000;
+    height: 65vh;
   }
 </style>
 
@@ -32,10 +52,12 @@
       </template>
       <week-navigator class="week-navigator" :current-day="this.currentDay" :on-navigate="setCurrentDay"></week-navigator>      
       <log-card :title="this.currentDay" :content="this.formattedWeek[this.currentDay]"></log-card>     
-      <img v-on:click="adding = !adding" :class="{
-        'add-log-button': true,
-        'rotated': adding
-      }" src="../assets/add-log-button.svg" height="60"/>
+      <div :class="{'add-form': true, 'add-form-adding': adding}">
+        <img v-on:click="adding = !adding" :class="{
+          'add-log-button': true,
+          'rotated': adding
+        }" src="../../assets/add-log-button.svg" height="60"/>
+      </div>
   </div>
 </template>
 
