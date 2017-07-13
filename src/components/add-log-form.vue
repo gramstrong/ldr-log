@@ -47,11 +47,18 @@
   .log-input {
     width: 50%;
     max-width: 250px;    
-    margin: 0 0 50px 0;
+    margin: 0 0 20px 0;
     height: 50px;
     border: 1px solid black;
     border-radius: 10px;
+    font-size: 40px;
     transition: all .7s;    
+  }
+
+  .log-notes {
+    width: 75%;
+    height: 150px;
+    font-size: 25px;
   }
 </style>
 
@@ -63,7 +70,7 @@
             <label>Mileage</label><input class="log-input" type="text"/>
             <label>Time</label><input class="log-input" type="text"/>
             <label>Effort</label><input class="log-input" type="text"/>
-            <label>Notes</label><input class="log-input" type="textarea"/>
+            <label>Notes</label><textarea class="log-input log-notes" type="text"/>
           </div>
         </template>
         <img v-on:click="adding = !adding" :class="{
