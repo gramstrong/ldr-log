@@ -31,11 +31,41 @@
     border-top-color: #000;
     height: 65vh;
   }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 100%
+  }
+
+  .log-input {
+    width: 50%;
+    max-width: 250px;    
+    margin: 0 0 50px 0;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 10px;
+    transition: all .7s;    
+  }
 </style>
 
 <template>
   <div class='add-log-form'> 
       <div :class="{'add-form': true, 'add-form-adding': adding}">
+        <template v-if="adding">
+          <div class="form-container">
+            <label>Mileage</label><input class="log-input" type="text"/>
+            <label>Time</label><input class="log-input" type="text"/>
+            <label>Effort</label><input class="log-input" type="text"/>
+            <label>Notes</label><input class="log-input" type="textarea"/>
+          </div>
+        </template>
         <img v-on:click="adding = !adding" :class="{
           'add-log-button': true,
           'rotated': adding
