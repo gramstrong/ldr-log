@@ -52,18 +52,14 @@
       </template>
       <week-navigator class="week-navigator" :current-day="this.currentDay" :on-navigate="setCurrentDay"></week-navigator>      
       <log-card :title="this.currentDay" :content="this.formattedWeek[this.currentDay]"></log-card>     
-      <div :class="{'add-form': true, 'add-form-adding': adding}">
-        <img v-on:click="adding = !adding" :class="{
-          'add-log-button': true,
-          'rotated': adding
-        }" src="../../assets/add-log-button.svg" height="60"/>
-      </div>
+      <add-log-form/>
   </div>
 </template>
 
 <script>
 import logCard from '@/components/log-card';
 import weekNavigator from '@/components/week-navigator';
+import addLogForm from '@/components/add-log-form';
 import queries from '@/queries';
 import dateFns from 'date-fns';
 
@@ -72,7 +68,8 @@ export default {
 
   components: {
     logCard,
-    weekNavigator
+    weekNavigator,
+    addLogForm
   },
 
   watch: {
@@ -108,7 +105,6 @@ export default {
         'Sunday': []
       },
       currentDay: 'Monday',
-      adding: false
     }
   },
 

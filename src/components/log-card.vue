@@ -69,7 +69,7 @@
 
 <script>
 export default {
-  name: 'card',
+  name: 'log-card',
 
   props: [
     'title',

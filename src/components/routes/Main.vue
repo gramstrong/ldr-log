@@ -33,7 +33,7 @@ a {
 import router from 'vue-router'
 
 export default {
-  name: 'main',
+  name: 'Main',
   components: {
     router
   },
