@@ -30,6 +30,8 @@
   .add-form-adding {
     border-top-color: #000;
     height: 65vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   .form-container {
@@ -41,12 +43,12 @@
     margin-right: auto;
     left: 0;
     right: 0;
+    top: 110px;
     width: 100%
   }
 
   .log-input {
-    width: 50%;
-    max-width: 250px;    
+    width: 215px;
     margin: 0 0 20px 0;
     height: 50px;
     border: 1px solid black;
@@ -60,6 +62,15 @@
     height: 150px;
     font-size: 25px;
   }
+
+  .efforts {
+    font-size: 32px;
+  }
+
+  .effort-label {
+    font-size: 20px;
+  }
+
 </style>
 
 <template>
@@ -67,10 +78,13 @@
       <div :class="{'add-form': true, 'add-form-adding': adding}">
         <template v-if="adding">
           <div class="form-container">
-            <label>Mileage</label><input class="log-input" type="text"/>
-            <label>Time</label><input class="log-input" type="text"/>
-            <label>Effort</label><input class="log-input" type="text"/>
-            <label>Notes</label><textarea class="log-input log-notes" type="text"/>
+            <label class="effort-lable">Mileage</label><input class="log-input" type="text"/>
+            <label class="effort-lable">Time</label><input class="log-input" type="text"/>
+            <label class="effort-lable">Effort</label>
+            <select class="log-input efforts">
+              <option v-for="effort in efforts">{{effort.name}}</option>
+            </select>
+            <label class="effort-label">Notes</label><textarea class="log-input log-notes" type="text"/>
           </div>
         </template>
         <img v-on:click="adding = !adding" :class="{
@@ -82,12 +96,27 @@
 </template>
 
 <script>
+import queries from '@/queries';
+
 export default {
   name: 'add-log-form',
 
   data() {
     return {
-      adding: false
+      adding: false,
+      efforts: []
+    }
+  },
+
+  watch: {
+    effortsEnum: function() {
+      this.efforts = this.effortsEnum.enumValues;
+    }
+  },
+
+  apollo: {
+    effortsEnum: {
+      query: queries.getEfforts(),
     }
   }
 }

@@ -48,11 +48,11 @@
 
 <template>
   <div class='day-view'>
-      <template v-for="(data, day) in formattedWeek">
-      </template>
-      <week-navigator class="week-navigator" :current-day="this.currentDay" :on-navigate="setCurrentDay"></week-navigator>      
-      <log-card :title="this.currentDay" :content="this.formattedWeek[this.currentDay]"></log-card>     
-      <add-log-form/>
+    <template v-for="(data, day) in formattedWeek">
+    </template>
+    <week-navigator class="week-navigator" :current-day="this.currentDay" :on-navigate="setCurrentDay"></week-navigator>
+    <log-card :title="this.currentDay" :content="this.formattedWeek[this.currentDay]"></log-card>
+    <add-log-form/>
   </div>
 </template>
 

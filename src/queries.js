@@ -22,5 +22,19 @@ export default {
                 }
             }
         `;
-    }
+    },
+
+    getEfforts () {
+        return gql`
+        query {
+            effortsEnum: 
+            __type(name: "Effort") {
+                name
+                enumValues {
+                name
+                }
+            }
+        }        
+        `
+    },
 }
