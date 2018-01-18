@@ -36,22 +36,22 @@ var vm = new Vue({
     console.log('created!');
   },
   beforeMount: function(){
-    console.log('before mount');
+    console.log('before mount!');
   },
   mounted: function() {
     console.log('mounted!');
   },
   beforeUpdate: function() {
-    console.log('mounted!');
+    console.log('beforeUpdate!');
   },
   updated: function() {
-    console.log('mounted!');
+    console.log('updated!');
   },
   beforeDestroy: function() {
-    console.log('mounted!');
+    console.log('beforeDestroy!');
   },
   destroyed: function() {
-    console.log('mounted!');
+    console.log('destroyed!');
   }
 });
 

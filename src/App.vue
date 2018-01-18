@@ -1,4 +1,8 @@
 <style>
+  body {
+    overflow: hidden;
+  }
+
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -11,6 +15,18 @@
     background-color: #41B883;
     height: 100px;
     margin-bottom: 40px;
+  }
+
+  .hard-run {
+    background-color: #fd6f6f;
+  }
+
+  .easy-run {
+    background-color: #95caff;
+  }
+
+  .medium-run {
+    background-color: #fbfb9b;
   }
 </style>
 

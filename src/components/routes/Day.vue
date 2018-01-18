@@ -1,7 +1,7 @@
 
 <style scoped>
   .day-view {
-    overflow: none;
+    overflow: hidden;
     height: 100%;
   }
 

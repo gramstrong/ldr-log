@@ -15,18 +15,6 @@
     margin: 5px;
   }
 
-  .hard-run {
-    background-color: #fd6f6f;
-  }
-
-  .easy-run {
-    background-color: #95caff;
-  }
-
-  .medium-run {
-    background-color: #fbfb9b;
-  }
-
   #logs {
     border-top: solid black 1px; 
     background-color: rgba(0,0,0,0.1);

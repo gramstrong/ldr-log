@@ -5,6 +5,9 @@
     border-radius: 50px;
     transition: transform .7s;
     padding: 5% 5%;
+    position: absolute;
+    top: 0;
+    right: -10px;
   }
 
   .rotated {
@@ -30,21 +33,20 @@
   .add-form-adding {
     border-top-color: #000;
     height: 65vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
   .form-container {
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+  }
+
+  .form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    top: 110px;
-    width: 100%
+    margin-top: 50px;    
   }
 
   .log-input {
@@ -71,26 +73,40 @@
     font-size: 20px;
   }
 
+  .effort-easy {
+
+  }
+
+  .effort-medium {
+
+  }
+
+  .effort-hard {
+
+  }
+
 </style>
 
 <template>
   <div class='add-log-form'> 
       <div :class="{'add-form': true, 'add-form-adding': adding}">
-        <template v-if="adding">
-          <div class="form-container">
-            <label class="effort-lable">Mileage</label><input class="log-input" type="text"/>
-            <label class="effort-lable">Time</label><input class="log-input" type="text"/>
-            <label class="effort-lable">Effort</label>
-            <select class="log-input efforts">
-              <option v-for="effort in efforts">{{effort.name}}</option>
-            </select>
-            <label class="effort-label">Notes</label><textarea class="log-input log-notes" type="text"/>
-          </div>
-        </template>
         <img v-on:click="adding = !adding" :class="{
           'add-log-button': true,
           'rotated': adding
-        }" src="../assets/add-log-button.svg" height="60"/>
+        }" src="../assets/add-log-button.svg" height="45"/>
+        <template v-if="adding">
+          <div class="form-container">
+            <div class="form">
+              <label class="effort-lable">Mileage</label><input class="log-input" type="text"/>
+              <label class="effort-lable">Time</label><input class="log-input" type="text"/>
+              <label class="effort-lable">Effort</label>
+              <select class="log-input efforts">
+                <option :class="`${effort.name.toLowerCase()}-run`" v-for="effort in efforts">{{effort.name}}</option>
+              </select>
+              <label class="effort-label">Notes</label><textarea class="log-input log-notes" type="text"/>
+            </div>
+          </div>
+        </template>
       </div>
   </div>
 </template>
