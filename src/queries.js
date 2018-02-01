@@ -1,5 +1,6 @@
 import gql from 'graphql-tag'
 import dateFns from 'date-fns'
+import validate from './utilities/validation';
 
 export default {
 
@@ -37,4 +38,24 @@ export default {
         }        
         `
     },
+
+    createLog (runDate, mileage, effort, notes) {
+        validate.date(runDate);
+        validate.number(mileage);
+        validate.effort(effort);
+        validate.notes(notes);
+
+        return gql`
+        mutation{
+            createDailyLog(     
+                runDate: "2018-01-11T07:00:00.000Z",
+                mileage: 5,
+                effort: EASY,
+                notes: "Notes"
+            ) {
+                id
+            }
+        }
+        `
+    }
 }
