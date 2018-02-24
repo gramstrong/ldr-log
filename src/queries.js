@@ -40,11 +40,6 @@ export default {
     },
 
     createLog (runDate, mileage, effort, notes) {
-        validate.date(runDate);
-        validate.number(mileage);
-        validate.effort(effort);
-        validate.notes(notes);
-
         return gql`
         mutation{
             createDailyLog(     

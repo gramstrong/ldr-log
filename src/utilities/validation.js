@@ -1,20 +1,8 @@
 const validate = {
-
-    date(value) {
-        return !Number.isNaN(Date.parse(value)) || console.error("Invalid date supplied.");
-    },
-
-    number(value) {
-        return (value % 1 === 0 && value > -1) || console.error("Invalid number supplied.");
-    },
-
-    effort(value) {
-        return {EASY: 1, MEDIUM: 1, HARD: 1}[value.toUpper()] || console.error("Invalid effort supplied.");
-    },
-
-    notes(value) {
-        return (typeof value === 'string' && value.length < 500) || console.error("Invalid notes supplied.");
-    }
+    date: value => !Number.isNaN(Date.parse(value)),
+    number: value => (value % 1 === 0 && value > -1),
+    effort: value => ({EASY: 1, MEDIUM: 1, HARD: 1}[value.toUpper()]),
+    notes: value => (typeof value === 'string' && value.length < 500)
 }
 
 export default validate;

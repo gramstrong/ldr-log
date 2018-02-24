@@ -73,18 +73,6 @@
     font-size: 20px;
   }
 
-  .effort-easy {
-
-  }
-
-  .effort-medium {
-
-  }
-
-  .effort-hard {
-
-  }
-
 </style>
 
 <template>
