@@ -1,5 +1,25 @@
+<style>
+
+  .log-form-item {
+    width: 215px;
+    margin: 0 0 20px 0;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 40px;
+    transition: all .7s;    
+  }
+
+  .log-form-item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+</style>
 
 <style scoped>
+
   .add-log-button {
     cursor: pointer;    
     border-radius: 50px;
@@ -49,28 +69,8 @@
     margin-top: 50px;    
   }
 
-  .log-input {
-    width: 215px;
-    margin: 0 0 20px 0;
-    height: 50px;
-    border: 1px solid black;
-    border-radius: 10px;
-    font-size: 40px;
-    transition: all .7s;    
-  }
-
-  .log-notes {
-    width: 75%;
-    height: 150px;
-    font-size: 25px;
-  }
-
   .efforts {
     font-size: 32px;
-  }
-
-  .effort-label {
-    font-size: 20px;
   }
 
 </style>
@@ -85,13 +85,10 @@
         <template v-if="adding">
           <div class="form-container">
             <div class="form">
-              <label class="effort-lable">Mileage</label><input class="log-input" type="text"/>
-              <label class="effort-lable">Time</label><input class="log-input" type="text"/>
-              <label class="effort-lable">Effort</label>
-              <select class="log-input efforts">
-                <option :class="`${effort.name.toLowerCase()}-run`" v-for="effort in efforts">{{effort.name}}</option>
-              </select>
-              <label class="effort-label">Notes</label><textarea class="log-input log-notes" type="text"/>
+              <log-input title="Mileage" type="text"/>
+              <log-input title="Time" type="text"/>
+              <log-effort-select title="Effort" :efforts="efforts"/>
+              <log-input :textarea="true" title="Notes" type="text"/>              
             </div>
           </div>
         </template>
@@ -101,9 +98,16 @@
 
 <script>
 import queries from '@/queries';
+import logInput from './log-input.vue';
+import logEffortSelect from './log-effort-select.vue';
 
 export default {
   name: 'add-log-form',
+
+  components: {
+    logInput,
+    logEffortSelect
+  },
 
   data() {
     return {
