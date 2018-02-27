@@ -12,13 +12,16 @@
   }
 
   #appHeader {
-    background-color: #41B883;
+    background-color: #2C3E50;
+    color: #fff;
     height: 100px;
     margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
   }
 
   .hard-run {
-    background-color: #fd6f6f;
+    background-color: #ca0c0c8f;
   }
 
   .easy-run {
@@ -26,7 +29,7 @@
   }
 
   .medium-run {
-    background-color: #fbfb9b;
+    background-color: #2268007d;
   }
 </style>
 

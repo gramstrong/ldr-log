@@ -2,18 +2,24 @@
 
   .log-form-item {
     width: 215px;
-    margin: 0 0 20px 0;
     height: 50px;
     border: 1px solid black;
     border-radius: 10px;
     font-size: 40px;
-    transition: all .7s;    
+    transition: all .7s;
   }
 
   .log-form-item-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 5px 20px 5px
+  }
+
+  .log-form-item-label {
+    padding: 0 5px 0 0;
+    font-size: 20px;
+    margin-bottom: 7px;    
   }
 
 </style>
@@ -73,6 +79,10 @@
     font-size: 32px;
   }
 
+  #timeContainer {
+    display: flex;
+    flex-direction: row;
+  }
 </style>
 
 <template>
@@ -85,10 +95,11 @@
         <template v-if="adding">
           <div class="form-container">
             <div class="form">
-              <log-input title="Mileage" type="text"/>
-              <log-input title="Time" type="text"/>
-              <log-effort-select title="Effort" :efforts="efforts"/>
-              <log-input :textarea="true" title="Notes" type="text"/>              
+              <log-input :on-change="e=>{this.mileage = e.target.value}" title="Mileage" type="number" width="215px" min="0" max="999" />
+              <log-input :on-change="e=>{this.minutes = e.target.value}" title="Minutes" type="number" width="215px" min="0" max="999"/>
+              <log-effort-select :on-change="e=>{this.effort = e.target.value}" title="Effort" :efforts="efforts"/>
+              <log-input :on-change="e=>this.notes = e.target.value" :textarea="true" title="Notes" type="text" width="100%"/>   
+              <submit-log-button :on-submit="onSubmit" :date="date":mileage="mileage" :minutes="minutes" :effort="effort" :notes="notes" />           
             </div>
           </div>
         </template>
@@ -100,19 +111,35 @@
 import queries from '@/queries';
 import logInput from './log-input.vue';
 import logEffortSelect from './log-effort-select.vue';
+import submitLogButton from './submit-log-button.vue';
 
 export default {
   name: 'add-log-form',
 
   components: {
     logInput,
-    logEffortSelect
+    logEffortSelect,
+    submitLogButton
   },
+
+  props: [
+    'date'
+  ],
 
   data() {
     return {
       adding: false,
-      efforts: []
+      efforts: [],
+      minutes: 0,
+      mileage: 0,
+      effort: 'EASY',
+      notes: ''
+    }
+  },
+
+  methods: {
+    onSubmit: function(){
+      this.adding=false;
     }
   },
 

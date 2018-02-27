@@ -56,7 +56,6 @@ export default {
 
   data() {
       return {
-        currentDay: dateFns.format(new Date(), 'dddd'),
         week: {
           'Monday': 'M',
           'Tuesday': 'T', 
@@ -69,7 +68,7 @@ export default {
       };
   },
 
-  props: ['onNavigate'],
+  props: ['onNavigate', 'currentDay'],
 
   mounted: function(){
     this.onNavigate(this.currentDay);

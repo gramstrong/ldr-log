@@ -39,14 +39,15 @@ export default {
         `
     },
 
-    createLog (runDate, mileage, effort, notes) {
+    createLog (date, mileage, minutes, effort, notes) {
         return gql`
         mutation{
             createDailyLog(     
-                runDate: "2018-01-11T07:00:00.000Z",
-                mileage: 5,
-                effort: EASY,
-                notes: "Notes"
+                runDate: "${date}",
+                mileage: ${mileage},
+                effort: ${effort},
+                notes: "${notes}",
+                minutes: ${minutes}
             ) {
                 id
             }

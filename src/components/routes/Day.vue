@@ -52,7 +52,7 @@
     </template>
     <week-navigator class="week-navigator" :current-day="this.currentDay" :on-navigate="setCurrentDay"></week-navigator>
     <log-card :title="this.currentDay" :content="this.formattedWeek[this.currentDay]"></log-card>
-    <add-log-form/>
+    <add-log-form :date="this.weekDates[this.currentDay]"/>
   </div>
 </template>
 
@@ -91,6 +91,9 @@ export default {
     setCurrentDay: function(newCurrentDay){
       this.currentDay = newCurrentDay;
     },
+    getWeekDate: function(index) {
+      return dateFns.format(dateFns.addDays(dateFns.startOfWeek(new Date(), {weekStartsOn: 1}), index), 'YYYY-MM-DDTHH:mm:ss.SSSZ');
+    }
   },
 
   data() {
@@ -104,7 +107,16 @@ export default {
         'Saturday': [],
         'Sunday': []
       },
-      currentDay: 'Monday',
+      weekDates: {
+        'Monday': this.getWeekDate(0),
+        'Tuesday': this.getWeekDate(1),
+        'Wednesday': this.getWeekDate(2),
+        'Thursday': this.getWeekDate(3),
+        'Friday': this.getWeekDate(4),
+        'Saturday': this.getWeekDate(5),
+        'Sunday': this.getWeekDate(6) 
+      },
+      currentDay: dateFns.format(new Date(), 'dddd'),
     }
   },
 
