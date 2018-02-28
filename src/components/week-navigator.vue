@@ -39,7 +39,7 @@
 <template>
   <div class='week-navigator'>
     <template v-for="(nav, day) in week">
-        <div :class="navClasses(day)" v-on:click="setDay" :day="day">
+        <div :class="navClasses(day)" v-on:click="(e) => onNavigate(e.currentTarget.getAttribute('day'))" :day="day">
           {{nav}}
           <div :class="selectedClasses(day)"></div>
         </div>
@@ -90,10 +90,6 @@ export default {
     selectedClasses: function(day){
       var classes = 'selected ';      
       return classes += day === this.currentDay ? 'selected-border' : ''
-    },
-    setDay: function(event){
-      var newDay = event.currentTarget.getAttribute('day');
-      this.currentDay = newDay;
     }
   }
 

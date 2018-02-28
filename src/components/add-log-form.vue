@@ -72,7 +72,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;    
+    margin: 50px 0 0 0;    
+    padding: 0 0 20px 0;
   }
 
   .efforts {
