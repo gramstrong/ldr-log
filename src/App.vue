@@ -46,7 +46,7 @@
   <div id="app">
     <div id="appHeader">
       <div id="home">
-        <!-- <img id="homeIcon" src="./assets/home.svg" height="45"/>     -->
+        <img v-if="isLogin" id="homeIcon" src="./assets/home.svg" height="45"/>
       </div>
       <h1 class="ldr-title">LDR Log</h1>
     </div>
@@ -56,6 +56,12 @@
 
 <script>
   export default {
-    name: 'app'
+    name: 'app',
+
+    data: function(){
+      return {
+        isLogin: this.$router.currentRoute.path !== '/'
+      };
+    }
   }
 </script>

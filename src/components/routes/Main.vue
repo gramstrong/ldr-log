@@ -79,8 +79,9 @@ a {
     <div id="loginContainer">
       <div>
         <input class="login-input" @change="(e) => setValue(e.target.value, 'email')" type="text" placeholder="Email"/>
-        <input class="login-input" @change="(e) => setValue(e.target.value, 'password')" type="password" placeholder="Password"/>
+        <input class="login-input" @change="(e) => setValue(e.target.value, 'password')" v-on:keyup.enter="signInUser" type="password" placeholder="Password"/>
       </div>
+      <h4 v-if="!valid">Invalid email or password.</h4>
       <button id="loginButton" @click="signInUser" >Login</button>
     </div>
   </div>
@@ -92,16 +93,20 @@ import queries from '@/queries';
 
 export default {
   name: 'Main',
+
   components: {
     router
   },
+
   data () {
     return {
       msg: 'Welcome to LDR Log',
       email: '',      
       password: '',
+      valid: true
     }
   },
+
   methods: {
     setValue: function(value, key){
       this[key] = value;
@@ -110,9 +115,11 @@ export default {
         let a = this.$apollo.mutate({
           mutation: queries.signInUser(this.email, this.password)
         }).then(response => {
-          console.log(response);
+          console.log(this.$router)
+          this.$router.push({path: 'daily'});
         }).catch(erro => {
-          console.log(response);          
+          console.log(this.$router)
+          this.valid = false;       
         });
     }
   },
