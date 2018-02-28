@@ -16,8 +16,17 @@
     color: #fff;
     height: 100px;
     margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: 75px auto 75px;
+  }
+
+  #home {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+  }
+
+  #homeIcon {
+    margin: 18px 0 0 20px;
   }
 
   .hard-run {
@@ -36,6 +45,9 @@
 <template>
   <div id="app">
     <div id="appHeader">
+      <div id="home">
+        <!-- <img id="homeIcon" src="./assets/home.svg" height="45"/>     -->
+      </div>
       <h1 class="ldr-title">LDR Log</h1>
     </div>
     <router-view></router-view> 

@@ -28,7 +28,21 @@ a {
 }
 
 #loginButton {
-  width: 100px;
+  width: 65%;
+  height: 40px;
+  font-size: 22px;
+  border-radius: 10px;
+  background-color: #2c3e5045;
+  border: 1px solid;
+}
+
+#loginButton:hover {
+  background-color: #2c3e501c;
+}
+
+#loginButton:active {
+  color: #FFF;
+  background-color: #2c3e50bd;
 }
 
 .login-input {
@@ -52,21 +66,22 @@ a {
   border: 2px solid #95caff;
 }
 
+.space {
+  height: 100px;
+}
+
 </style>
 
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h2>Views</h2>
-    <ul>
-      <li><router-link to="/daily">Daily</router-link></li>
-    </ul>
+    <span class="space"/>    
     <div id="loginContainer">
       <div>
         <input class="login-input" @change="(e) => setValue(e.target.value, 'email')" type="text" placeholder="Email"/>
         <input class="login-input" @change="(e) => setValue(e.target.value, 'password')" type="password" placeholder="Password"/>
       </div>
-      <button id="#loginButton" @click="signInUser" >Login</button>
+      <button id="loginButton" @click="signInUser" >Login</button>
     </div>
   </div>
 </template>
